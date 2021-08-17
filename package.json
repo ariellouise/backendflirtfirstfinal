@@ -1,0 +1,32 @@
+{
+  "name": "dating-app-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arielmurphy/dating-app-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arielmurphy/dating-app-backend/issues"
+  },
+  "homepage": "https://github.com/ariellouise/dating-app-backend#readme",
+  "engines": {
+    "node": "14.x"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "postgres": "^1.0.2",
+    "sequelize": "^6.6.5"
+  },
+  "description": ""
+}
