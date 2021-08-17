@@ -1,4 +1,4 @@
-const Sequelize = require("Sequelize");
+const Sequelize = require("sequelize");
 
 const db = new Sequelize("postgres://arielmurphy@localhost:5432/messages3");
 
