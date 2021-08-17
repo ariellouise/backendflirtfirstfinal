@@ -46,6 +46,11 @@ server.put(`/messages/:id`, async (req, res) => {
   res.send({ messages: await Message.findAll() });
 });
 
-server.listen(3002, () => {
+let port = process.env.PORT;
+if (!port) {
+  port = 3002;
+}
+
+server.listen(port, () => {
   console.log(`Server is running on 3002`);
 });
