@@ -10,40 +10,26 @@ server.use(bodyParser.json());
 const { db } = require("./models/db");
 const Message = require("./models/Message")(db);
 
-server.get(`/`, (req, res) => {
-  res.send({ hello: "world" });
-});
-
-server.get(`/messages`, async (req, res) => {
+server.get(`/chat`, async (req, res) => {
   res.send({ messages: await Message.findAll() });
 });
 
-server.post(`/messages`, async (req, res) => {
-  await Message.create({
-    timestamp: new Date(),
-    received: req.body.received,
-    content: req.body.content,
-  });
+server.post(`/chat`, async (req, res) => {
+  await Message.create(req.body);
+  res.send({ messages: await Message.findAll() });
+});
 
-  const messages = await Message.findAll();
-
+server.put("/chat/:index", (req, res) => {
+  messages[req.params.index].text = req.body.text;
   res.send({ messages });
 });
-//changed git
-
-server.delete(`/messages/:id`, async (req, res) => {
-  await Message.destroy({ where: { id: req.params.id } });
-
-  res.send({ messages: await Message.findAll() });
+server.delete("/chat/:index", (req, res) => {
+  messages.splice(req.params.index, 1);
+  res.send({ messages });
 });
 
-server.put(`/messages/:id`, async (req, res) => {
-  let myMessage = await Message.findOne({ where: { id: req.params.id } });
-  myMessage.content = req.body.content;
-  myMessage.timestamp = new Date();
-  await myMessage.save();
-
-  res.send({ messages: await Message.findAll() });
+server.get("/", (req, res) => {
+  res.send("Hello World");
 });
 
 let port = process.env.PORT;
